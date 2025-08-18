@@ -1,7 +1,7 @@
 import { HomeCarousel } from '@/components/ui/shared/home/home-carousal'
 import { HomeCard } from '@/components/ui/shared/home/home-card'
 import { toSlug } from '@/lib/utils'
-import ProductSlider from '@/components/ui/shared/product /product-slider'
+import ProductSlider from '@/components/ui/shared/test/product-slider'
 
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -10,6 +10,7 @@ import {
   getProductsByTag,
 } from '@/lib/actions/product.actions'
 import data from '@/lib/data'
+import { Link } from 'lucide-react'
 
 export default async function Home() {
   const categories = (await getAllCategories()).slice(0, 4)
@@ -65,6 +66,7 @@ export default async function Home() {
   return (
     <>
       <HomeCarousel items={data.carousels} />
+      <a href='/exam'>Test</a>
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomeCard cards={cards} />
         <Card className='w-full rounded-none'>
