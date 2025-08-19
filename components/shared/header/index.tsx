@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Menu from './menu'
-import { Button } from '../../button'
+import { Button } from '../../ui/button'
 import Search from './search'
 import data from '@/lib/data'
 import { MenuIcon } from 'lucide-react'

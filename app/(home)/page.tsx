@@ -1,7 +1,7 @@
-import { HomeCarousel } from '@/components/ui/shared/home/home-carousal'
-import { HomeCard } from '@/components/ui/shared/home/home-card'
+import { HomeCarousel } from '@/components/shared/home/home-carousal'
+import { HomeCard } from '@/components/shared/home/home-card'
 import { toSlug } from '@/lib/utils'
-import ProductSlider from '@/components/ui/shared/test/product-slider'
+import ProductSlider from '@/components/shared/test/product-slider'
 
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -11,6 +11,7 @@ import {
 } from '@/lib/actions/product.actions'
 import data from '@/lib/data'
 import { Link } from 'lucide-react'
+import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 
 export default async function Home() {
   const categories = (await getAllCategories()).slice(0, 4)
@@ -83,6 +84,9 @@ export default async function Home() {
             />
           </CardContent>
         </Card>
+      </div>
+      <div className='p-4 bg-background'>
+        <BrowsingHistoryList className=' p-4 bg-background' />
       </div>
     </>
   )
