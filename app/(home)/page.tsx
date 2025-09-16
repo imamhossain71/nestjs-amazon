@@ -10,7 +10,7 @@ import {
   getProductsByTag,
 } from '@/lib/actions/product.actions'
 import data from '@/lib/data'
-import { Link } from 'lucide-react'
+// import { Link } from 'lucide-react'
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 
 export default async function Home() {
@@ -67,10 +67,10 @@ export default async function Home() {
   return (
     <>
       <HomeCarousel items={data.carousels} />
-      <a href='/exam'>Test</a>
+
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomeCard cards={cards} />
-        <Card className='w-full rounded-none'>
+        <Card className='w-full rounded-none '>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider title='Todays Deals' products={todaysDeals} />
           </CardContent>

@@ -48,7 +48,7 @@ export default function ProductSlider({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className='left-0' />
+        <CarouselPrevious className='left-0 ' />
         <CarouselNext className='right-0' />
       </Carousel>
     </div>

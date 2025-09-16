@@ -8,3 +8,6 @@ export const APP_SLOGAN =
   'Your Next.js app, beautifully styled with Tailwind CSS.'
 
 export const PAGE_SIZE = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 9)
+export const FREE_SHIPPING_MIN_PRICE = Number(
+  process.env.NEXT_PUBLIC_FREE_SHIPPING_MIN_PRICE || 35
+)

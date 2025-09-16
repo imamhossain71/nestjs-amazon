@@ -4,18 +4,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { IProduct } from '@/lib/db/models/product.model'
 
 import Rating from './rating'
 import { formatNumber } from '@/lib/utils'
 import ProductPrice from './product-price'
 import ImageHover from './image-hover'
+import AddToCart from '../products/add-to-cart'
+import { round2, generateId } from '@/lib/utils'
 
 const ProductCard = ({
   product,
   hideBorder = false,
   hideDetails = false,
+  hideAddToCart = false,
 }: {
   product: IProduct
   hideDetails?: boolean
@@ -23,7 +26,8 @@ const ProductCard = ({
   hideAddToCart?: boolean
 }) => {
   const ProductImage = () => (
-    <Link href={`/product/${product.slug}`}>
+    // <Link key={product._id} href={`/product/${product.slug}`}>
+    <Link key={product._id} href={`/product/${product.slug}`}>
       <div className='relative h-52'>
         {product.images.length > 1 ? (
           <ImageHover
@@ -73,6 +77,27 @@ const ProductCard = ({
     </div>
   )
 
+  const AddButton = () => (
+    <div className='w-full text-center'>
+      <AddToCart
+        minimal
+        item={{
+          clientId: generateId(),
+          product: product._id,
+          size: product.sizes[0],
+          color: product.colors[0],
+          countInStock: product.countInStock,
+          name: product.name,
+          slug: product.slug,
+          category: product.category,
+          price: round2(product.price),
+          quantity: 1,
+          image: product.images[0],
+        }}
+      />
+    </div>
+  )
+
   return hideBorder ? (
     <div className='flex flex-col'>
       <ProductImage />
@@ -81,6 +106,7 @@ const ProductCard = ({
           <div className='p-3 flex-1 text-center'>
             <ProductDetails />
           </div>
+          {!hideAddToCart && <AddButton />}
         </>
       )}
     </div>
@@ -94,6 +120,9 @@ const ProductCard = ({
           <CardContent className='p-3 flex-1  text-center'>
             <ProductDetails />
           </CardContent>
+          <CardFooter className='p-3 '>
+            {!hideAddToCart && <AddButton />}
+          </CardFooter>
         </>
       )}
     </Card>
