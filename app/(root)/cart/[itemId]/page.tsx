@@ -1,9 +1,9 @@
 import CartAddItem from './cart-add-item'
 
-export default function CartAddItemPage({
-  params,
-}: {
-  params: { itemId: string }
+export default async function CartAddItemPage(props: {
+  params: Promise<{ itemId: string }>
 }) {
-  return <CartAddItem itemId={params.itemId} />
+  const { itemId } = await props.params
+
+  return <CartAddItem itemId={itemId} />
 }

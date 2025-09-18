@@ -14,36 +14,19 @@ import { Separator } from '@/components/ui/separator'
 import AddToCart from '@/components/shared/products/add-to-cart'
 import { round2, generateId } from '@/lib/utils'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] }
+export default async function ProductDetails(props: {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ page: string; color: string; size: string }>
 }) {
-  const slug = params.slug.join('-')
-  const product = await getProductBySlug(slug)
-  if (!product) {
-    return { title: 'Product not found' }
-  }
-  return {
-    title: product.name,
-    description: product.description,
-  }
-}
+  const searchParams = await props.searchParams
 
-export default async function ProductDetails({
-  params,
-  searchParams,
-}: {
-  params: { slug: string }
-  searchParams: { page?: string; color?: string; size?: string }
-}) {
-  const { slug } = params
   const { page, color, size } = searchParams
 
+  const params = await props.params
+
+  const { slug } = params
+
   const product = await getProductBySlug(slug)
-  if (!product) {
-    return <div className='p-10 text-red-500'>Product not found</div>
-  }
 
   const relatedProducts = await getRelatedProductsByCategory({
     category: product.category,
