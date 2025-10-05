@@ -1,38 +1,38 @@
 'use server'
 
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 import { signIn, signOut } from '@/auth'
-import { IUserSignIn } from '@/types'
+import { IUserSignIn, IUserSignUp } from '@/types'
 import { redirect } from 'next/navigation'
-// import { UserSignUpSchema, UserUpdateSchema } from '../validator'
-// import { connectToDatabase } from '../db'
-// import User, { IUser } from '../db/models/user.model'
-// import { formatError } from '../utils'
+import { UserSignUpSchema } from '../validator'
+import { connectToDatabase } from '../db'
+import User from '../db/models/user.model'
+import { formatError } from '../utils'
 // import { redirect } from 'next/navigation'
 // import { revalidatePath } from 'next/cache'
 // import { z } from 'zod'
 // import { getSetting } from './setting.actions'
 
 // CREATE
-// export async function registerUser(userSignUp: IUserSignUp) {
-//   try {
-//     const user = await UserSignUpSchema.parseAsync({
-//       name: userSignUp.name,
-//       email: userSignUp.email,
-//       password: userSignUp.password,
-//       confirmPassword: userSignUp.confirmPassword,
-//     })
+export async function registerUser(userSignUp: IUserSignUp) {
+  try {
+    const user = await UserSignUpSchema.parseAsync({
+      name: userSignUp.name,
+      email: userSignUp.email,
+      password: userSignUp.password,
+      confirmPassword: userSignUp.confirmPassword,
+    })
 
-//     await connectToDatabase()
-//     await User.create({
-//       ...user,
-//       password: await bcrypt.hash(user.password, 5),
-//     })
-//     return { success: true, message: 'User created successfully' }
-//   } catch (error) {
-//     return { success: false, error: formatError(error) }
-//   }
-// }
+    await connectToDatabase()
+    await User.create({
+      ...user,
+      password: await bcrypt.hash(user.password, 5),
+    })
+    return { success: true, message: 'User created successfully' }
+  } catch (error) {
+    return { success: false, error: formatError(error) }
+  }
+}
 
 // // DELETE
 

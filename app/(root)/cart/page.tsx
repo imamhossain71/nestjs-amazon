@@ -176,7 +176,9 @@ export default function CartPage() {
                     </span>{' '}
                   </div>
                   <Button
-                    onClick={() => router.push('/checkout')}
+                    onClick={() =>
+                      router.push('/sign-in?callbackUrl=/checkout')
+                    }
                     className='rounded-full w-full'
                   >
                     Proceed to Checkout
