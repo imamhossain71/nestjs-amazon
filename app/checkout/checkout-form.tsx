@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
+
 import {
   Form,
   FormControl,
@@ -19,8 +20,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-// import { useToast } from '@/hooks/use-toast'
-// import { createOrder } from '@/lib/actions/order.actions'
+import { useToast } from '@/hooks/use-toast'
+import { createOrder } from '@/lib/actions/order.actions'
 import {
   calculateFutureDate,
   formatDateTime,
@@ -44,6 +45,7 @@ import {
   DEFAULT_PAYMENT_METHOD,
 } from '@/lib/constants'
 import ProductPrice from '@/components/shared/test/product-price'
+// import ProductPrice from '@/components/shared/test/product-price'
 // import useSettingStore from '@/hooks/use-setting-store'
 // import ProductPrice from '@/components/shared/product/product-price'
 
@@ -69,7 +71,7 @@ const shippingAddressDefaultValues =
       }
 
 const CheckoutForm = () => {
-  // const { toast } = useToast()
+  const { toast } = useToast()
   const router = useRouter()
   //   const {
   //     setting: {
@@ -95,7 +97,7 @@ const CheckoutForm = () => {
     setPaymentMethod,
     updateItem,
     removeItem,
-    // clearCart,
+    clearCart,
     setDeliveryDateIndex,
   } = useCartStore()
   const isMounted = useIsMounted()
@@ -127,32 +129,32 @@ const CheckoutForm = () => {
     useState<boolean>(false)
 
   const handlePlaceOrder = async () => {
-    // const res = await createOrder({
-    //   items,
-    //   shippingAddress,
-    //   expectedDeliveryDate: calculateFutureDate(
-    //     availableDeliveryDates[deliveryDateIndex!].daysToDeliver
-    //   ),
-    //   deliveryDateIndex,
-    //   paymentMethod,
-    //   itemsPrice,
-    //   shippingPrice,
-    //   taxPrice,
-    //   totalPrice,
-    // })
-    // if (!res.success) {
-    //   toast({
-    //     description: res.message,
-    //     variant: 'destructive',
-    //   })
-    // } else {
-    //   toast({
-    //     description: res.message,
-    //     variant: 'default',
-    //   })
-    //   clearCart()
-    //   router.push(`/checkout/${res.data?.orderId}`)
-    // }
+    const res = await createOrder({
+      items,
+      shippingAddress,
+      expectedDeliveryDate: calculateFutureDate(
+        AVAILABLE_DELIVERY_DATES[deliveryDateIndex!].daysToDeliver
+      ),
+      deliveryDateIndex,
+      paymentMethod,
+      itemsPrice,
+      shippingPrice,
+      taxPrice,
+      totalPrice,
+    })
+    if (!res.success) {
+      toast({
+        description: res.message,
+        variant: 'destructive',
+      })
+    } else {
+      toast({
+        description: res.message,
+        variant: 'default',
+      })
+      clearCart()
+      router.push(`/checkout/${res.data?.orderId}`)
+    }
   }
   const handleSelectPaymentMethod = () => {
     setIsAddressSelected(true)
