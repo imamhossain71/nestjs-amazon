@@ -8,12 +8,27 @@ import {
   UserSignInSchema,
   UserSignUpSchema,
   ShippingAddressSchema,
+  ReviewInputSchema,
 } from '@/lib/validator'
+
+export type IReviewInput = z.infer<typeof ReviewInputSchema>
+export type IReviewDetails = IReviewInput & {
+  _id: string
+  createdAt: string
+  user: {
+    name: string
+  }
+}
 
 export type IProductInput = z.infer<typeof ProductInputSchema>
 export type Data = {
   users: IUserInput[]
   products: IProductInput[]
+  reviews: {
+    title: string
+    rating: number
+    comment: string
+  }[]
   headerMenus: {
     name: string
     href: string

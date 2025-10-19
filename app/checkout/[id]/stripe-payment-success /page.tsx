@@ -31,7 +31,15 @@ export default async function SuccessPage(props: {
     return notFound()
 
   const isSuccess = paymentIntent.status === 'succeeded'
+  // if (!order.isPaid && isSuccess) {
+  //   // Mark order as paid
+  //   order.isPaid = true
+  //   order.paidAt = new Date()
+  //   await order.save()
+
+  // }
   if (!isSuccess) return redirect(`/checkout/${id}`)
+  console.log('Payment succeeded for order:', order._id)
   return (
     <div className='max-w-4xl w-full mx-auto space-y-8'>
       <div className='flex flex-col gap-6 items-center '>
