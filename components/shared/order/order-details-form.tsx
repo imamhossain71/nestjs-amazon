@@ -23,7 +23,7 @@ import ProductPrice from '../test/product-price'
 
 export default function OrderDetailsForm({
   order,
-  isAdmin,
+  // isAdmin,
 }: {
   order: IOrder
   isAdmin: boolean

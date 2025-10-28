@@ -9,6 +9,7 @@ import {
   UserSignUpSchema,
   ShippingAddressSchema,
   ReviewInputSchema,
+  UserNameSchema,
 } from '@/lib/validator'
 
 export type IReviewInput = z.infer<typeof ReviewInputSchema>
@@ -51,3 +52,4 @@ export type ShippingAddress = z.infer<typeof ShippingAddressSchema>
 export type IUserInput = z.infer<typeof UserInputSchema>
 export type IUserSignIn = z.infer<typeof UserSignInSchema>
 export type IUserSignUp = z.infer<typeof UserSignUpSchema>
+export type IUserName = z.infer<typeof UserNameSchema>
