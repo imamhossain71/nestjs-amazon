@@ -15,13 +15,13 @@ export default async function Search() {
   return (
     <form action='/search' method='GET' className='flex  items-stretch h-9 '>
       <Select name='category'>
-        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  rounded-r-none rounded-l-md rtl:rounded-r-md rtl:rounded-l-none  '>
+        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-400 text-black border-r  rounded-r-none rounded-l-md rtl:rounded-r-md rtl:rounded-l-none   '>
           <SelectValue placeholder='All' />
         </SelectTrigger>
-        <SelectContent position='popper'>
+        <SelectContent position='popper' className='bg-white text-black'>
           <SelectItem value='all'>All</SelectItem>
           {categories.map((category: string) => (
-            <SelectItem key={category} value={category}>
+            <SelectItem key={category} value={category} className=''>
               {category}
             </SelectItem>
           ))}
@@ -37,7 +37,7 @@ export default async function Search() {
         type='submit'
         className='bg-primary text-primary-foreground text-black rounded-s-none rounded-e-md h-full px-5 py-2 '
       >
-        <SearchIcon className='w-6 h-6' />
+        <SearchIcon className='w-6 h-6 ' />
       </button>
     </form>
   )
