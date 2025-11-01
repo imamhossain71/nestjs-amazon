@@ -56,7 +56,7 @@ export function CalendarDateRangePicker({
         </PopoverTrigger>
         <PopoverContent
           onCloseAutoFocus={() => setCalendarDate(defaultDate)}
-          className='w-auto p-0'
+          className='w-auto p-0 bg-white dark:bg-gray-800'
           align='end'
         >
           <Calendar
@@ -66,7 +66,7 @@ export function CalendarDateRangePicker({
             onSelect={setCalendarDate}
             numberOfMonths={2}
           />
-          <div className='flex gap-4 p-4 pt-0'>
+          <div className='flex gap-4 p-4 pt-0 '>
             <PopoverClose asChild>
               <Button onClick={() => setDate(calendarDate)}>Apply</Button>
             </PopoverClose>
